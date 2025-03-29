@@ -27,7 +27,8 @@
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="Danh mục sản phẩm" FontSize="20" FontWeight="Bold" />
 
-                <Button Grid.Column="1" Width="200" Content="Add new Category" HorizontalAlignment="Right" Click="OpenCreateCategory"/>
+                <Button  Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}, 
+                Converter={StaticResource BoolToVisibilityConverter}}" Grid.Column="1" Width="200" Content="Thêm danh mục" HorizontalAlignment="Right" Click="OpenCreateCategory"/>
             </Grid>
             <Grid  Grid.Row="2" >
                 <Grid.RowDefinitions>
