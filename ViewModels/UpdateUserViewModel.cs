@@ -14,7 +14,7 @@ namespace FurniManager.ViewModels
     public class UpdateUserViewModel : INotifyPropertyChanged
     {
         public ICommand SaveUserCommand { get; }
-
+        public List<string> Roles { get; } = new();
         private User _user;
 
         public User User
@@ -31,7 +31,8 @@ namespace FurniManager.ViewModels
         public UpdateUserViewModel(User user)
         {
             _user = user;
-
+            Roles.Add("ADMIN");
+            Roles.Add("STAFF");
             SaveUserCommand = new RelayCommand(SaveUser);
         }
 

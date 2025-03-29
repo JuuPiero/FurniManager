@@ -22,6 +22,12 @@ namespace FurniManager.Data
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
 
+
+        public DbSet<PurchaseOrder> SaleOrders { get; set; }
+
+        public DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
+
+
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
             options.UseSqlServer("Server=LAPTOP-46DSA8AK\\SQLEXPRESS;Database=NoiThatDBTEst;Trusted_Connection=True;TrustServerCertificate=Yes");
@@ -55,7 +61,19 @@ namespace FurniManager.Data
                 .HasForeignKey(pod => pod.ProductId)
                 .OnDelete(DeleteBehavior.SetNull);
 
-    
+
+            modelBuilder.Entity<SaleOrderDetail>()
+               .HasOne(so => so.SaleOrder)
+               .WithMany(so => so.SaleOrderDetails)
+               .HasForeignKey(so => so.SaleOrderId)
+               .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<SaleOrderDetail>()
+                .HasOne(so => so.Product)
+                .WithMany()
+                .HasForeignKey(so => so.ProductId)
+                .OnDelete(DeleteBehavior.SetNull);
+
 
             //modelBuilder.Entity<PurchaseOrderDetail>()
             //    .HasOne(pod => pod.Product)

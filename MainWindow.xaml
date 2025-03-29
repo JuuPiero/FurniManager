@@ -75,7 +75,7 @@
                             </StackPanel>
                         </Button>
 
-                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenProduct">
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenSaleOrder">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="res/sale.png" Style="{StaticResource NavIconStyle}"/>
                                 <TextBlock Text="Đơn mua" Style="{StaticResource NavTextStyle}"/>

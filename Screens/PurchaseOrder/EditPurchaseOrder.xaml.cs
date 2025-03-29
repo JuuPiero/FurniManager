@@ -1,5 +1,4 @@
-﻿using FurniManager.Utils;
-using FurniManager.ViewModels;
+﻿using FurniManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +15,16 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace FurniManager.Screens.PurchaseOrder;
-public partial class ListPurchaseOrder : Page
+public partial class EditPurchaseOrder : Page
 {
-    public ListPurchaseOrder()
+    public EditPurchaseOrder(FurniManager.Models.PurchaseOrder purchaseOrder)
     {
         InitializeComponent();
-        DataContext = new PurchaseOrderViewModel();
+        DataContext = new EditPurchaseOrderViewModel(purchaseOrder);
     }
 
-    private void OpenCreatePurchaseOrder(object sender, RoutedEventArgs e)
+    private void NumberOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
     {
-        Navigation.Navigate(new CreatePurchaseOrder());
+        e.Handled = !int.TryParse(e.Text, out _);
     }
-
-    
 }

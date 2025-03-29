@@ -43,7 +43,16 @@
     <Compile Update="Screens\PurchaseOrder\CreatePurchaseOrder.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Screens\PurchaseOrder\EditPurchaseOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Screens\PurchaseOrder\ListPurchaseOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\SaleOrder\CreateSaleOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\SaleOrder\ListSaleOrders.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Screens\Statistical\StatisticalPage.xaml.cs">
@@ -96,7 +105,16 @@
     <Page Update="Screens\PurchaseOrder\CreatePurchaseOrder.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Screens\PurchaseOrder\EditPurchaseOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Screens\PurchaseOrder\ListPurchaseOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\SaleOrder\CreateSaleOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\SaleOrder\ListSaleOrders.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Screens\Statistical\StatisticalPage.xaml">

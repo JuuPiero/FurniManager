@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using FurniManager.Screens.Categories;
 using FurniManager.Screens.Statistical;
 using FurniManager.Screens.PurchaseOrder;
+using FurniManager.Screens.SaleOrder;
 
 namespace FurniManager
 {
@@ -80,10 +81,17 @@ namespace FurniManager
 
         }
 
+        private void OpenSaleOrder(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ListSaleOrders());
+        }
+
         private void OpenTest(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new TestPage());
 
         }
+
+       
     }
 }

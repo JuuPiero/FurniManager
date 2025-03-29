@@ -14,18 +14,14 @@ namespace FurniManager.Models
         [Key]
         public int Id { get; set; }
 
-
         public int Quantity { get; set; }
         public int SaleOrderId { get; set; }
         public SaleOrder SaleOrder { get; set; }
 
-        [AllowNull]
         public int? ProductId { get; set; }
         public Product? Product { get; set; }
 
-
         [NotMapped]
         public decimal TotalPrice { get; set; }
-
     }
 }

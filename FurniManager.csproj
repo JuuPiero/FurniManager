@@ -67,7 +67,6 @@
 
   <ItemGroup>
     <Folder Include="Screens\Dashboard\" />
-    <Folder Include="Screens\SaleOrder\" />
   </ItemGroup>
 
 </Project>

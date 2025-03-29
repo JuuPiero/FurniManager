@@ -23,7 +23,7 @@ namespace FurniManager
                         Name = "admin",
                         Email = "admin",
                         Password = "admin",
-                        Role = "admin",
+                        Role = "ADMIN",
                     });
                     db.SaveChanges();
                 }
