@@ -1,0 +1,112 @@
+﻿<Window x:Class="FurniManager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FurniManager"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="680" Width="1200"
+        Style="{StaticResource MaterialDesignWindow}"
+        >
+    <Window.Resources>
+        <ResourceDictionary Source="Styles/Styles.xaml"/>
+    </Window.Resources>
+    <DockPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#ccc" Height="40">
+            <TextBlock  Text="Admin"/>
+            <TextBlock Text="Admin"/>
+        </StackPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="220"/>
+                <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Sidebar with modern style -->
+                <Border Grid.Column="0" Background="#7439de" CornerRadius="0 10 0 0">
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                        <!-- Sidebar header -->
+                    <Border Padding="15,20" Background="#673bb7">
+                            <TextBlock Text="MAIN MENU" Foreground="#F6B17A" FontWeight="Bold" FontSize="14"/>
+                        </Border>
+
+                        <!-- Navigation buttons with hover effects -->
+                        <ItemsControl ItemsSource="{Binding MenuItems}" BorderThickness="0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource NavButtonStyle}" 
+                                    Command="{Binding NavigateCommand}"
+                                    Tag="{Binding PageType}">
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image Source="{Binding Icon}" Style="{StaticResource NavIconStyle}"/>
+                                            <TextBlock Text="{Binding Title}" Style="{StaticResource NavTextStyle}"/>
+                                        </StackPanel>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                        <!-- Or keep your original buttons with new style -->
+                        <Button Style="{StaticResource NavButtonStyle}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/dashboard.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Dashboard" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenCategory">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/category.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Danh mục" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+
+                         <Button Style="{StaticResource NavButtonStyle}" Click="OpenProduct">
+                             <StackPanel Orientation="Horizontal">
+                                 <Image Source="res/product.png" Style="{StaticResource NavIconStyle}"/>
+                                 <TextBlock Text="Sản phẩm" Style="{StaticResource NavTextStyle}"/>
+                             </StackPanel>
+                         </Button>
+
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenPurchaseOrder">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/purchase.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Nhập hàng" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenProduct">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/sale.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Đơn mua" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+
+
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenAccount">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/user.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Tài khoản" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+
+                    <!-- Add more buttons as needed -->
+
+                        <!-- Footer/spacer -->
+                        <Border Height="1" Margin="15,10" Background="#424769"/>
+
+                        <!-- Logout button -->
+                        <Button Style="{StaticResource NavButtonStyle}" Margin="0,20,0,10" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/logout.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Logout" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
+                    </StackPanel>
+                </Border>
+
+
+                <Frame Grid.Column="1" x:Name="MainFrame" />
+        </Grid>
+    </DockPanel>
+</Window>

@@ -1,0 +1,84 @@
+﻿<Page x:Class="FurniManager.Screens.Categories.ListCategories"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FurniManager.Screens.Categories"
+      xmlns:utils="clr-namespace:FurniManager.Utils"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ListCategories">
+    <Border Padding="10">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            
+            <!--___________________________SEARCH_____________________________-->
+            <TextBox Grid.Row="0" Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}"  Height="40" BorderThickness="1"/>
+
+            <!--___________________________Filter_____________________________-->
+            <Grid Grid.Row="1" VerticalAlignment="Top">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="50*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="1" Width="200" Content="Add new Category" HorizontalAlignment="Right" Click="OpenCreateCategory"/>
+            </Grid>
+            <Grid  Grid.Row="2" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <DataGrid Grid.Row="0" ItemsSource="{Binding PagedCategories}" AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="True"
+                  SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                 >
+
+                    <!-- Cột Tên -->
+                    <DataGrid.Columns>
+                        <DataGridTextColumn IsReadOnly="True" Header="Id" Binding="{Binding Id}" Width="*"/>
+                        <DataGridTextColumn Header="Name"  IsReadOnly="True" Binding="{Binding Name}" Width="4*"/>
+                        <DataGridTextColumn Header="Count(Items)"  IsReadOnly="True" Binding="{Binding Count}" Width="2*"/>
+
+                        <!-- Cột Nút Action -->
+                        <DataGridTemplateColumn  Header="Action" Width="3*"   
+                            Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}, 
+                             Converter={StaticResource BoolToVisibilityConverter}}">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                   <StackPanel  Orientation="Horizontal" Margin="5,0,5,0">
+                                        <Button Content="Edit" Margin="0,0,10,0"
+                                            Command="{Binding DataContext.OnEditCategory, RelativeSource={RelativeSource AncestorType=Page}}"
+                                            CommandParameter="{Binding}" />
+
+                                        <Button Content="Delete" Background="Red"
+                                        Command="{Binding DataContext.OnDeleteCategory, 
+                                                  RelativeSource={RelativeSource AncestorType=DataGrid}}"
+                                        CommandParameter="{Binding}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+
+                        </DataGridTemplateColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button Content="Prev" Command="{Binding PreviousPageCommand}" Width="60" Margin="5"/>
+                    <TextBlock Text="{Binding CurrentPage}" FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text=" / " FontSize="16" VerticalAlignment="Center"/>
+                    <TextBlock Text="{Binding TotalPages}" FontSize="16" VerticalAlignment="Center"/>
+                    <Button Content="Next" Command="{Binding NextPageCommand}" Width="60" Margin="5"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <ApplicationDefinition Update="App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Screens\Account\UpdateUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Categories\CreateCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Categories\EditCategory.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Categories\ListCategories.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\CategoryStack.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\DashboardPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Products\CreateProduct.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Products\EditProduct.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Products\ListProducts.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Account\CreateUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Account\ListUser.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\PurchaseOrder\CreatePurchaseOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\PurchaseOrder\ListPurchaseOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\Statistical\StatisticalPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\TestPage.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="windows\LoginWindow.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="MainWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Account\UpdateUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Categories\CreateCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Categories\EditCategory.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Categories\ListCategories.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\CategoryStack.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\DashboardPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Products\CreateProduct.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Products\EditProduct.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Products\ListProducts.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Account\CreateUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Account\ListUser.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\PurchaseOrder\CreatePurchaseOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\PurchaseOrder\ListPurchaseOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\Statistical\StatisticalPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\TestPage.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Styles\Styles.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="windows\LoginWindow.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>
