@@ -24,12 +24,12 @@
                        HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
                 <!-- Tên đăng nhập -->
-                <TextBlock Text="Email" Foreground="White" Margin="0,5"/>
+                <TextBlock Text="Email" Margin="0,5"/>
                 <TextBox x:Name="UsernameBox" Height="35" Background="#ccc" 
                      BorderThickness="0" Padding="5" />
 
                 <!-- Mật khẩu -->
-                <TextBlock Text="Password" Foreground="White" Margin="0,10,0,5"/>
+                <TextBlock Text="Mật khẩu" Margin="0,10,0,5"/>
 
                 <PasswordBox x:Name="PassBox"  Height="35" Background="#ccc"
             BorderThickness="0" Padding="5" />
