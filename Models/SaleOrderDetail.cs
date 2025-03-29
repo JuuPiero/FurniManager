@@ -22,6 +22,6 @@ namespace FurniManager.Models
         public Product? Product { get; set; }
 
         [NotMapped]
-        public decimal TotalPrice { get; set; }
+        public decimal TotalPrice => this.Product.Price * Quantity;
     }
 }

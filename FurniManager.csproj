@@ -8,12 +8,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="res\arialuni.ttf" />
     <None Remove="res\category.png" />
     <None Remove="res\dashboard.png" />
     <None Remove="res\default.jpg" />
     <None Remove="res\logout.png" />
     <None Remove="res\product.png" />
     <None Remove="res\purchase.png" />
+    <None Remove="res\robotoregular.ttf" />
     <None Remove="res\sale.png" />
     <None Remove="res\static.png" />
     <None Remove="res\user.png" />
@@ -23,6 +25,9 @@
     <Content Include="bin\Debug\net7.0-windows\Images\default.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="res\arialuni.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="res\category.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -30,6 +35,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\purchase.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="res\robotoregular.ttf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="res\sale.png">
@@ -56,6 +64,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EPPlus" Version="8.0.1" />
+    <PackageReference Include="iTextSharp" Version="5.5.13.4" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
 
@@ -63,10 +73,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.14" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.14" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Screens\Dashboard\" />
   </ItemGroup>
 
 </Project>

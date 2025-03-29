@@ -43,30 +43,32 @@
               CanUserAddRows="False"
               CanUserDeleteRows="True">
                 <DataGrid.Columns>
-                    <!--<DataGridTemplateColumn Header="Sản phẩm" Width="*">
+                    <DataGridTemplateColumn Header="Sản phẩm" Width="*">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <ComboBox ItemsSource="{Binding Path=DataContext.Products, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Page}}"  
+                                <ComboBox IsReadOnly="true" ItemsSource="{Binding Path=DataContext.Products, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Page}}"  
                                  IsSynchronizedWithCurrentItem="False" IsHitTestVisible="False"  SelectedValue="{Binding ProductId}"  SelectedValuePath="Id"  DisplayMemberPath="Name"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                         <DataGridTemplateColumn.CellEditingTemplate>
                             <DataTemplate>
-                                <ComboBox Foreground="#000" ItemsSource="{Binding Path=DataContext.Products, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Page}}"  
+                                <ComboBox IsReadOnly="true" Foreground="#000" ItemsSource="{Binding Path=DataContext.Products, RelativeSource={RelativeSource Mode=FindAncestor,AncestorType=Page}}"  
                             SelectedValue="{Binding ProductId}" SelectedValuePath="Id"  DisplayMemberPath="Name"  
                             IsSynchronizedWithCurrentItem="False">
                                 </ComboBox>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellEditingTemplate>
-                    </DataGridTemplateColumn>-->
-                    <DataGridTextColumn Header="Số lượng" Binding="{Binding Product.Name}" Width="*" />
-                    <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" Width="*" />
-                    <DataGridTextColumn Header="Giá nhập" Binding="{Binding Cost}" Width="*" />
+                    </DataGridTemplateColumn>
+                    <!--<DataGridTextColumn Header="Số lượng" Binding="{Binding Product.Name}" Width="*" />-->
+                    <DataGridTextColumn IsReadOnly="true" Header="Số lượng" Binding="{Binding Quantity}" Width="*" />
+                    <DataGridTextColumn IsReadOnly="true" Header="Giá nhập" Binding="{Binding Cost}" Width="*" />
+                    <DataGridTextColumn IsReadOnly="true" Header="Thành tiền" Binding="{Binding TotalPrice}" Width="*" />
+
                 </DataGrid.Columns>
             </DataGrid>
 
-            <Button Grid.Row="5" Content="Thêm sản phẩm nhập" Command="{Binding AddOrderItemCommand}" HorizontalAlignment="Left" Width="200"/>
-            <Button Grid.Row="6" Content="Lưu đơn nhập" Width="200" Command="{Binding SavePurchaseOrderCommand}"/>
+            <!--<Button Grid.Row="5" Content="Thêm sản phẩm nhập" Command="{Binding AddOrderItemCommand}" HorizontalAlignment="Left" Width="200"/>-->
+            <!--<Button Grid.Row="6" Content="Lưu đơn nhập" Width="200" Command="{Binding SavePurchaseOrderCommand}"/>-->
         </Grid>
     </ScrollViewer>
 </Page>

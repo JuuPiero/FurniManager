@@ -18,11 +18,20 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="150" />
             </Grid.RowDefinitions>
-            <Button 
-                Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}}" 
-                Content="Add New" 
-                Width="150" 
-                HorizontalAlignment="Right" Click="OpenCreateUser" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="0" Text="Dữ liệu thống kê" FontSize="20" FontWeight="Bold" />
+                <Button  Grid.Column="1"
+                 Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}, 
+                 Converter={StaticResource BoolToVisibilityConverter}}" 
+                 Content="Tạo tài khoản" 
+                 Width="150" 
+                 HorizontalAlignment="Right" Click="OpenCreateUser" />
+            </Grid>
 
             
             <DataGrid Grid.Row="1" ItemsSource="{Binding Users}" AutoGenerateColumns="False"

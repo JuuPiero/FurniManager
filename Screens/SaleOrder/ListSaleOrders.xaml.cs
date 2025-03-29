@@ -1,4 +1,5 @@
 ﻿using FurniManager.Utils;
+using FurniManager.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace FurniManager.Screens.SaleOrder
         public ListSaleOrders()
         {
             InitializeComponent();
+            DataContext = new SaleOrderViewModel();
         }
 
         private void OpenCreateSaleOrder(object sender, RoutedEventArgs e)

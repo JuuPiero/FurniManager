@@ -26,6 +26,23 @@ namespace FurniManager.ViewModels
         public ICommand NextPageCommand { get; }
         public ICommand PreviousPageCommand { get; }
 
+
+        public List<Category> Categories { get; set; }
+
+        public Category _categoryFilter;
+        public Category CategoryFilter
+        {
+            get => _categoryFilter;
+            set
+            {
+                _categoryFilter = value;
+                OnPropertyChanged(nameof(CategoryFilter));
+                LoadProducts();
+
+            }
+        }
+
+
         public List<Product> _products = new();
         public ObservableCollection<Product> Products { get; } = new();
 
@@ -84,6 +101,8 @@ namespace FurniManager.ViewModels
             Products.Clear();
             using(var db = new ApplicationDbContext())
             {
+                Categories = db.Categories.ToList();
+
                 _products = db.Products.ToList();
                 var items = db.Products
                     .Include(p => p.Category)
@@ -92,8 +111,14 @@ namespace FurniManager.ViewModels
 
                 if (!string.IsNullOrWhiteSpace(Keyword))
                 {
-                    items = items.Where(c => c.Name.Contains(Keyword, StringComparison.OrdinalIgnoreCase)).ToList();
+                    items = items.Where(p => p.Name.Contains(Keyword, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
+
+                if(CategoryFilter != null)
+                {
+                    items = items.Where(p => p.CategoryId == CategoryFilter.Id).ToList();
+                }
+
 
                 items = items.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
 

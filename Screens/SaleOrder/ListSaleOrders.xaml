@@ -20,14 +20,14 @@
 
             <!--___________________________SEARCH_____________________________-->
             <!--<TextBox Grid.Row="0" Text="{Binding Keyword, UpdateSourceTrigger=PropertyChanged}" materialDesign:HintAssist.Hint="Search"  Height="40" Foreground="#fff" BorderThickness="1"/>-->
-
+            <TextBlock   Grid.Row="0" Text="Danh sách đơn hàng" FontSize="20" FontWeight="Bold"/>
             <!--___________________________Filter_____________________________-->
             <Grid Grid.Row="1" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="50*"/>
                     <ColumnDefinition Width="50*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock  Grid.Column="0" Text="Danh sách đơn hàng" FontSize="20" FontWeight="Bold"/>
+                <ComboBox Grid.Column="0" BorderThickness="1" Height="40" ItemsSource="{Binding Status}" SelectedItem="{Binding StatusFilter}" />
                 <Button Grid.Column="1" Width="200" Content="Tạo đơn hàng" HorizontalAlignment="Right" Click="OpenCreateSaleOrder"/>
             </Grid>
             <Grid  Grid.Row="2" >
@@ -36,35 +36,36 @@
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <DataGrid Grid.Row="0" ItemsSource="{Binding PurchaseOrders}" AutoGenerateColumns="False"
-              HeadersVisibility="Column"
-              CanUserAddRows="False"
-              CanUserResizeColumns="True"
-              CanUserResizeRows="False"
-              CanUserSortColumns="True"
-              SelectedItem="{Binding SelectedPurchaseOrder, Mode=TwoWay}"
-            >
+                <DataGrid Grid.Row="0" ItemsSource="{Binding SaleOrders}" AutoGenerateColumns="False"
+                  HeadersVisibility="Column"
+                  CanUserAddRows="False"
+                  CanUserResizeColumns="True"
+                  CanUserResizeRows="False"
+                  CanUserSortColumns="True"
+                  SelectedItem="{Binding SelectedSaleOrder, Mode=TwoWay}"
+                >
                     <!-- Cột Tên -->
                     <DataGrid.Columns>
                         <DataGridTextColumn FontSize="15" IsReadOnly="True" Header="Id" Binding="{Binding Id}" Width="*"/>
-                        <DataGridTextColumn FontSize="15" Header="Nhà cung cấp"  IsReadOnly="True" Binding="{Binding Supplier}" Width="2*"/>
+                        <DataGridTextColumn FontSize="15" Header="Khách hàng"  IsReadOnly="True" Binding="{Binding CustomerName}" Width="2*"/>
                         <DataGridTextColumn FontSize="15" Header="Tổng tiền" Width="2*" IsReadOnly="True" Binding="{Binding TotalAmount}" />
                         <DataGridTextColumn FontSize="15" Header="Nhân viên" Width="2*" IsReadOnly="True" Binding="{Binding User.Name}" />
+                        <DataGridTextColumn FontSize="15" Header="Trạng thái" Width="2*" IsReadOnly="True" Binding="{Binding Status}" />
                         <DataGridTextColumn FontSize="15" Header="Ngày nhập" Width="2*" IsReadOnly="True" Binding="{Binding CreatedAt}" />
 
                         <!-- Cột Nút Action -->
-                        <DataGridTemplateColumn Header="Action" Width="3*"   
-                    Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}, 
-                     Converter={StaticResource BoolToVisibilityConverter}}">
+                        <DataGridTemplateColumn Header="Action" Width="3*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel  Orientation="Horizontal" Margin="5,0,5,0">
+                                    <StackPanel Orientation="Horizontal" Margin="5,0,5,0">
                                         <Button Content="Chi tiết" Margin="0,0,10,0"
-                                        Command="{Binding DataContext.EditCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                                        Command="{Binding DataContext.EditSaleOrderCommand, RelativeSource={RelativeSource AncestorType=Page}}"
                                         CommandParameter="{Binding}" />
-
-                                        <Button Content="Delete" Background="Red"
-                                        Command="{Binding DataContext.DeleteCommand, 
+                                        <Button 
+                                            Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}, 
+                                            Converter={StaticResource BoolToVisibilityConverter}}" 
+                                            Content="Delete" Background="Red"
+                                        Command="{Binding DataContext.DeleteSaleOrderCommand, 
                                                   RelativeSource={RelativeSource AncestorType=DataGrid}}"
                                         CommandParameter="{Binding}" />
                                     </StackPanel>
@@ -76,7 +77,7 @@
                 </DataGrid>
 
                 <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-                    <Button Content="Prev" Command="{Binding PrevPageCommand}" Width="60" Margin="5"/>
+                    <Button Content="Prev" Command="{Binding PreviousPageCommand}" Width="60" Margin="5"/>
                     <TextBlock Text="{Binding CurrentPage}" FontSize="16" VerticalAlignment="Center"/>
                     <TextBlock Text=" / " FontSize="16" VerticalAlignment="Center"/>
                     <TextBlock Text="{Binding TotalPages}" FontSize="16" VerticalAlignment="Center"/>

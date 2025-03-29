@@ -1,12 +1,14 @@
 ﻿using FurniManager.Commands;
 using FurniManager.Data;
 using FurniManager.Models;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace FurniManager.ViewModels
@@ -14,7 +16,11 @@ namespace FurniManager.ViewModels
     public class UpdateUserViewModel : INotifyPropertyChanged
     {
         public ICommand SaveUserCommand { get; }
-        public List<string> Roles { get; } = new();
+        public List<string> Roles { get; } = new()
+        {
+            "ADMIN",
+            "STAFF"
+        };
         private User _user;
 
         public User User
@@ -23,25 +29,30 @@ namespace FurniManager.ViewModels
             set
             {
                 _user = value;
-
                 OnPropertyChanged(nameof(User));
-
             }
         }
         public UpdateUserViewModel(User user)
         {
             _user = user;
-            Roles.Add("ADMIN");
-            Roles.Add("STAFF");
             SaveUserCommand = new RelayCommand(SaveUser);
         }
 
         private void SaveUser()
         {
+            if(User.Name.IsNullOrEmpty())
+            {
+                MessageBox.Show("Điền đủ thông tin");
+                return;
+            }
+
+
             using (var db = new ApplicationDbContext())
             {
                 db.Users.Update(User);
                 db.SaveChanges();
+
+                MessageBox.Show("Cập nhật thành công");
             }
         }
 

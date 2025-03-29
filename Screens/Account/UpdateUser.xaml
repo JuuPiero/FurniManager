@@ -16,28 +16,28 @@
         </Grid.RowDefinitions>
 
         <!-- Form Chính -->
-        <Border Grid.Row="1" Width="600" Padding="20"  Background="#393E46"
-        HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border Grid.Row="1" Width="600" Padding="20" BorderBrush="#673bb7"
+        HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="1">
             <StackPanel>
-                <TextBlock  Text="Update User" FontSize="20" Foreground="White" FontWeight="Bold"
+                <TextBlock  Text="Update User" FontSize="20"  FontWeight="Bold"
                    HorizontalAlignment="Center" Margin="0,0,0,10"/>
 
                 <!-- Họ và tên -->
-                <TextBlock Text="Name" Foreground="White" Margin="0,5"/>
-                <TextBox Height="35" Background="#222831" Foreground="White"
+                <TextBlock Text="Name"  Margin="0,5"/>
+                <TextBox Height="35" Background="#ccc" 
                  BorderThickness="0" Padding="5" Text="{Binding User.Name}"/>
 
                 <!-- Email -->
-                <TextBlock Text="Email" Foreground="White" Margin="0,10,0,5"/>
-                <TextBox Text="{Binding User.Email}" Height="35" Background="#222831" Foreground="White"
+                <TextBlock Text="Email"  Margin="0,10,0,5"/>
+                <TextBox IsReadOnly="True" Text="{Binding User.Email}" Height="35" Background="#ccc" 
                  BorderThickness="0" Padding="5" />
 
                 <!-- Mật khẩu -->
-                <TextBlock Text="Mật khẩu" Foreground="White" Margin="0,10,0,5"/>
-                <PasswordBox  Height="35" Background="#222831" Foreground="White"
+                <TextBlock Text="Mật khẩu" Margin="0,10,0,5"/>
+                <PasswordBox PasswordChanged="PasswordBox_PasswordChanged"  Height="35" Background="#ccc" 
                      BorderThickness="0" Padding="5" />
 
-                <TextBlock Text="Role" Foreground="White" Margin="0,10,0,5"/>
+                <TextBlock Text="Role"  Margin="0,10,0,5"/>
                 <ComboBox BorderThickness="1" Padding="5"
                     SelectedValue="{Binding User.Role, Mode=TwoWay}"
                     ItemsSource="{Binding Roles}"

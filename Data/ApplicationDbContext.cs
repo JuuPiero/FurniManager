@@ -10,27 +10,38 @@ namespace FurniManager.Data
 {
     public class ApplicationDbContext : DbContext
     {
+
+        private static ApplicationDbContext _instance;
+
+        public static ApplicationDbContext Instance
+        {
+            get
+            {
+                if (_instance == null) _instance = new ApplicationDbContext();
+                return _instance;
+            }
+        }
+
+
+
         public DbSet<User> Users { get; set; }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }
-
         public DbSet<ProductAttribute> Attributes { get; set; }
-
         public DbSet<ProductImage> Images { get; set; }
 
         public DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public DbSet<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
 
 
-        public DbSet<PurchaseOrder> SaleOrders { get; set; }
-
+        public DbSet<SaleOrder> SaleOrders { get; set; }
         public DbSet<SaleOrderDetail> SaleOrderDetails { get; set; }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
-            options.UseSqlServer("Server=LAPTOP-46DSA8AK\\SQLEXPRESS;Database=NoiThatDBTEst;Trusted_Connection=True;TrustServerCertificate=Yes");
+            options.UseSqlServer("Server=LAPTOP-46DSA8AK\\SQLEXPRESS;Database=NoiThatDB;Trusted_Connection=True;TrustServerCertificate=Yes");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -46,8 +57,6 @@ namespace FurniManager.Data
                 .WithMany(p => p.Attributes)
                 .HasForeignKey(a => a.ProductId)
                 .OnDelete(DeleteBehavior.Cascade);
-
-
 
             modelBuilder.Entity<PurchaseOrderDetail>()
                 .HasOne(pod => pod.PurchaseOrder)
@@ -73,12 +82,6 @@ namespace FurniManager.Data
                 .WithMany()
                 .HasForeignKey(so => so.ProductId)
                 .OnDelete(DeleteBehavior.SetNull);
-
-
-            //modelBuilder.Entity<PurchaseOrderDetail>()
-            //    .HasOne(pod => pod.Product)
-            //    .
-            //    .OnDelete(DeleteBehavior.SetNull);
 
         }
 

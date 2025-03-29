@@ -19,14 +19,12 @@ namespace FurniManager.Models
 
         [Precision(18, 4)]
         public decimal TotalAmount { get; set; } //-- Tổng tiền
-
         public string Note { get; set; }
 
 
         public int? UserId { get; set; } // Nhân viên tạo đơn
         public User? User { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-
 
         public ObservableCollection<SaleOrderDetail> SaleOrderDetails { get; set; } = new();
     }

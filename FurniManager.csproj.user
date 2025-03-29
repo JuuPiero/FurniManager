@@ -19,9 +19,6 @@
     <Compile Update="Screens\Categories\ListCategories.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Screens\CategoryStack.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Screens\DashboardPage.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -50,6 +47,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Screens\SaleOrder\CreateSaleOrder.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Screens\SaleOrder\EditSaleOrder.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Screens\SaleOrder\ListSaleOrders.xaml.cs">
@@ -81,9 +81,6 @@
     <Page Update="Screens\Categories\ListCategories.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Screens\CategoryStack.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Screens\DashboardPage.xaml">
       <SubType>Designer</SubType>
     </Page>
@@ -112,6 +109,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Screens\SaleOrder\CreateSaleOrder.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Screens\SaleOrder\EditSaleOrder.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Screens\SaleOrder\ListSaleOrders.xaml">

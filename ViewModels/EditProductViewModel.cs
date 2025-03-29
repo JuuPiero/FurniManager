@@ -126,13 +126,14 @@ namespace FurniManager.ViewModels
                 {
                     if (attribute.Value.IsNullOrEmpty() || attribute.Key.IsNullOrEmpty())
                     {
-                        db.Attributes.Remove(attribute);
-                        db.SaveChanges();
+                        if(attribute.Id > 0)
+                        {
+                            db.Attributes.Remove(attribute);
+                            db.SaveChanges();
+                        }
+                        continue;
                     }
-                    else
-                    {
-                        db.UpdateOrCreate<ProductAttribute>(attribute);
-                    }
+                    db.UpdateOrCreate<ProductAttribute>(attribute);
                 }
 
                 db.Entry(Product).State = EntityState.Modified;
@@ -140,7 +141,7 @@ namespace FurniManager.ViewModels
                 db.SaveChanges();
                 OnPropertyChanged(nameof(Product));
             }
-
+            
             MessageBox.Show("Updated product Successfully");
         }
         private void AddAttribute()

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FurniManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,7 @@ namespace FurniManager.Screens.SaleOrder
         public CreateSaleOrder()
         {
             InitializeComponent();
+            DataContext = new CreateSaleOrderViewModel();
         }
 
         private void NumberOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)

@@ -19,7 +19,7 @@ public class CreatePurchaseOrderViewModel : INotifyPropertyChanged
 {
     public ICommand SavePurchaseOrderCommand { get; }
     public ICommand AddOrderItemCommand { get; }
-    public ObservableCollection<Product> Products { get; } = new();
+    public List<Product> Products { get; } = new();
 
     private PurchaseOrder _purchaseOrder = new();
     public PurchaseOrder PurchaseOrder
@@ -41,12 +41,9 @@ public class CreatePurchaseOrderViewModel : INotifyPropertyChanged
         AddOrderItemCommand = new RelayCommand(AddOrderItem);
         SavePurchaseOrderCommand = new RelayCommand(SavePurchaseOrder);
 
-        using(var db = new ApplicationDbContext())
-        {
-            db.Products.ToList().ForEach(product =>
-            {
-                Products.Add(product);
-            });
+        using (var db = new ApplicationDbContext())
+        {     
+            Products = db.Products.ToList();
         }
         AddOrderItem();
     }
@@ -68,6 +65,18 @@ public class CreatePurchaseOrderViewModel : INotifyPropertyChanged
             }
             db.PurchaseOrders.Add(PurchaseOrder);
             db.SaveChanges();
+
+            // Add quantity here
+            foreach (var item in PurchaseOrder.PurchaseOrderDetails)
+            {
+                var product = db.Products.FirstOrDefault(p => p.Id == item.ProductId);
+                if (product != null)
+                {
+                    product.Quantity += item.Quantity; // Cộng thêm số lượng
+                    db.Products.Update(product);
+                    db.SaveChanges();
+                }
+            }
 
             MessageBox.Show("Tạo đơn thành công");
             Navigation.Navigate(new CreatePurchaseOrder());

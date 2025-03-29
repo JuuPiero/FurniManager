@@ -29,11 +29,13 @@ namespace FurniManager.Screens.Account
             DataContext = new UpdateUserViewModel(user);
         }
 
-        private void OnUpdate(object sender, RoutedEventArgs e)
-        {
-            
 
-            MessageBox.Show("User updated successfully");
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            if (sender is PasswordBox passwordBox && DataContext is UpdateUserViewModel vm)
+            {
+                vm.User.Password = passwordBox.Password;
+            }
         }
     }
 }

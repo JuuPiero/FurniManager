@@ -14,6 +14,7 @@ using FurniManager.Screens.Categories;
 using FurniManager.Screens.Statistical;
 using FurniManager.Screens.PurchaseOrder;
 using FurniManager.Screens.SaleOrder;
+using FurniManager.Windows;
 
 namespace FurniManager
 {
@@ -26,9 +27,10 @@ namespace FurniManager
         public MainWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new DashboardPage());
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OpenDashboard(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new DashboardPage());
         }
@@ -93,5 +95,11 @@ namespace FurniManager
         }
 
        
+        private void OnLogout(object sender, RoutedEventArgs e)
+        {
+            LoginWindow login = new LoginWindow();
+            login.Show();
+            this.Close();
+        }
     }
 }

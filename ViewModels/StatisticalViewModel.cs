@@ -6,6 +6,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using System.IO;
+using FurniManager.Utils;
+using System.Windows.Input;
+using FurniManager.Commands;
+using System.Windows;
 
 namespace FurniManager.ViewModels
 {
@@ -14,7 +20,9 @@ namespace FurniManager.ViewModels
         public SeriesCollection ProductCountByCategoryChart { get; set; }
         public List<string> ProductCountLabels { get; set; }
 
-       
+
+        public ICommand ExportExcelCommand { get; }
+
 
         public SeriesCollection StockLevelChart { get; set; }
         public List<string> StockLevelLabels { get; set; }
@@ -26,6 +34,9 @@ namespace FurniManager.ViewModels
 
         public StatisticalViewModel()
         {
+
+            ExportExcelCommand = new RelayCommand(ExportExcel);
+
             using var db = new ApplicationDbContext();
 
             // Biểu đồ số lượng sản phẩm theo loại
@@ -81,5 +92,23 @@ namespace FurniManager.ViewModels
             ProductByDateLabels = productByDateData.Select(d => d.Date.ToShortDateString()).ToList();
 
         }
+
+
+        private void ExportExcel()
+        {
+            var exePath = AppDomain.CurrentDomain.BaseDirectory; // Lấy thư mục chứa file .exe
+            var excelPath = Path.Combine(exePath, "BaoCao_ThongKe.xlsx");
+
+            var db = new ApplicationDbContext();
+            var orders = db.PurchaseOrders.Include(o => o.PurchaseOrderDetails).ToList();
+            var products = db.Products.ToList();
+
+            var report = new ExcelReportGenerator();
+            report.ExportToExcel(orders, products, excelPath);
+
+           MessageBox.Show($"Xuất báo cáo Excel thành công! File nằm ở: {excelPath}");
+        }
     }
+
+
 }

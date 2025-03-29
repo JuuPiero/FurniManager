@@ -21,7 +21,11 @@ namespace FurniManager.ViewModels
         public ICommand SaveUserCommand { get; }
 
 
-        public List<string> Roles { get; } = new();
+        public List<string> Roles { get; } = new()
+        {
+            "ADMIN",
+            "STAFF"
+        };
 
         private User _user = new();
         public User User
@@ -36,9 +40,6 @@ namespace FurniManager.ViewModels
 
         public CreateUserViewModel()
         {
-            Roles.Add("ADMIN");
-            Roles.Add("STAFF");
-
             SaveUserCommand = new RelayCommand(SaveUser);
         }
 

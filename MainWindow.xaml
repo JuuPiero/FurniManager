@@ -4,18 +4,27 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FurniManager"
+        xmlns:utils="clr-namespace:FurniManager.Utils"
         mc:Ignorable="d"
-        Title="MainWindow" Height="680" Width="1200"
+        Title="Quản lý nội thất" Height="680" Width="1200"
         Style="{StaticResource MaterialDesignWindow}"
         >
     <Window.Resources>
         <ResourceDictionary Source="Styles/Styles.xaml"/>
     </Window.Resources>
-    <DockPanel>
-        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" Background="#ccc" Height="40">
-            <TextBlock  Text="Admin"/>
-            <TextBlock Text="Admin"/>
-        </StackPanel>
+    <DockPanel >
+        <Grid DockPanel.Dock="Top"  Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" >
+                <TextBlock FontWeight="Bold" Text="{Binding CurrentUser.Name, Source={x:Static utils:GlobalContext.Instance}}" VerticalAlignment="Center" Margin="10,0,10,0"/>
+                <TextBlock Text="Role:"  VerticalAlignment="Center" Margin="0,0,5,0"/>
+                <TextBlock Text="{Binding CurrentUser.Role, Source={x:Static utils:GlobalContext.Instance}}" VerticalAlignment="Center"  Margin="0,0,20,0"/>
+            </StackPanel>
+        </Grid>
         <Grid DockPanel.Dock="Bottom">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="220"/>
@@ -47,7 +56,7 @@
                         </ItemsControl>
 
                         <!-- Or keep your original buttons with new style -->
-                        <Button Style="{StaticResource NavButtonStyle}">
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenDashboard">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="res/dashboard.png" Style="{StaticResource NavIconStyle}"/>
                                 <TextBlock Text="Dashboard" Style="{StaticResource NavTextStyle}"/>
@@ -81,7 +90,12 @@
                                 <TextBlock Text="Đơn mua" Style="{StaticResource NavTextStyle}"/>
                             </StackPanel>
                         </Button>
-
+                        <Button Style="{StaticResource NavButtonStyle}" Click="OpenStatistical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="res/static.png" Style="{StaticResource NavIconStyle}"/>
+                                <TextBlock Text="Thống kê" Style="{StaticResource NavTextStyle}"/>
+                            </StackPanel>
+                        </Button>
 
                         <Button Style="{StaticResource NavButtonStyle}" Click="OpenAccount">
                             <StackPanel Orientation="Horizontal">
@@ -96,7 +110,7 @@
                         <Border Height="1" Margin="15,10" Background="#424769"/>
 
                         <!-- Logout button -->
-                        <Button Style="{StaticResource NavButtonStyle}" Margin="0,20,0,10" >
+                        <Button Style="{StaticResource NavButtonStyle}" Margin="0,20,0,10" Click="OnLogout">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="res/logout.png" Style="{StaticResource NavIconStyle}"/>
                                 <TextBlock Text="Logout" Style="{StaticResource NavTextStyle}"/>
@@ -106,7 +120,7 @@
                 </Border>
 
 
-                <Frame Grid.Column="1" x:Name="MainFrame" />
+                <Frame NavigationUIVisibility="Hidden" Grid.Column="1" x:Name="MainFrame" />
         </Grid>
     </DockPanel>
 </Window>

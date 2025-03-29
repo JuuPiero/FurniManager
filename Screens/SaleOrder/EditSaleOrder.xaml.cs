@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FurniManager.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +14,19 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FurniManager.Screens
+namespace FurniManager.Screens.SaleOrder
 {
-    /// <summary>
-    /// Interaction logic for CategoryStack.xaml
-    /// </summary>
-    public partial class CategoryStack : Page
+    public partial class EditSaleOrder : Page
     {
-        public CategoryStack()
+        public EditSaleOrder(Models.SaleOrder saleOrder)
         {
             InitializeComponent();
+            DataContext = new EditSaleOrderViewModel(saleOrder);
+
+        }
+        private void NumberOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = !int.TryParse(e.Text, out _);
         }
     }
 }
