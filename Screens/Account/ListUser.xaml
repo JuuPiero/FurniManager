@@ -24,7 +24,7 @@
                     <ColumnDefinition />
 
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Column="0" Text="Dữ liệu thống kê" FontSize="20" FontWeight="Bold" />
+                <TextBlock Grid.Column="0" Text="Tài khoản" FontSize="20" FontWeight="Bold" />
                 <Button  Grid.Column="1"
                  Visibility="{Binding CurrentUser.IsAdmin, Source={x:Static utils:GlobalContext.Instance}, 
                  Converter={StaticResource BoolToVisibilityConverter}}" 
@@ -45,7 +45,7 @@
 
                 <!-- Cột Tên -->
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Tên" Binding="{Binding Name}" Width="*"/>
+                    <DataGridTextColumn IsReadOnly="True"  Header="Tên" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn IsReadOnly="True" Header="Email" Binding="{Binding Email}" Width="2*"/>
                     <DataGridTextColumn IsReadOnly="True" Header="Role" Binding="{Binding Role}" Width="*"/>
 
