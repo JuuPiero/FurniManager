@@ -49,7 +49,7 @@
                 >
                     <DataGrid.Columns>
                         <DataGridTextColumn FontSize="15" IsReadOnly="True" Header="Id" Binding="{Binding Id}" Width="*"/>
-                        <DataGridTextColumn FontSize="15" Header="Name"  IsReadOnly="True" Binding="{Binding Name}" Width="2*"/>
+                        <DataGridTextColumn FontSize="15" Header="Tên SP"  IsReadOnly="True" Binding="{Binding Name}" Width="2*"/>
                         <DataGridTemplateColumn Header="Preview" Width="2*">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
@@ -58,7 +58,7 @@
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
                         <DataGridTextColumn FontSize="15" Header="Danh mục"  IsReadOnly="True" Binding="{Binding Category.Name}" Width="2*"/>
-                        <DataGridTextColumn FontSize="15" Header="InStock"  IsReadOnly="True" Binding="{Binding Quantity}" Width="*"/>
+                        <DataGridTextColumn FontSize="15" Header="In Stock"  IsReadOnly="True" Binding="{Binding Quantity}" Width="*"/>
                         <!-- Cột Nút Action -->
                         <DataGridTemplateColumn Header="Action" Width="3*" >
                             <DataGridTemplateColumn.CellTemplate>

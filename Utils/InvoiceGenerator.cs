@@ -55,7 +55,7 @@ public class InvoiceGenerator
                 table.AddCell(new PdfPCell(new Phrase(index.ToString(), fontText)));
                 table.AddCell(new PdfPCell(new Phrase(item.Product.Name, fontText)));
                 table.AddCell(new PdfPCell(new Phrase(item.Quantity.ToString(), fontText)));
-                table.AddCell(new PdfPCell(new Phrase($"{item.TotalPrice} VND", fontText)));
+                table.AddCell(new PdfPCell(new Phrase($"{item.TotalPrice} VNĐ", fontText)));
                 index++;
             }
 

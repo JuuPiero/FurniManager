@@ -49,7 +49,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn FontSize="15" IsReadOnly="True" Header="Id" Binding="{Binding Id}" Width="*"/>
                         <DataGridTextColumn FontSize="15" Header="Nhà cung cấp"  IsReadOnly="True" Binding="{Binding Supplier}" Width="2*"/>
-                        <DataGridTextColumn FontSize="15" Header="Tổng tiền" Width="2*" IsReadOnly="True" Binding="{Binding TotalAmount}" />
+                        <DataGridTextColumn FontSize="15" Header="Tổng tiền(VNĐ)" Width="2*" IsReadOnly="True" Binding="{Binding TotalAmount}" />
                         <DataGridTextColumn FontSize="15" Header="Nhân viên" Width="2*" IsReadOnly="True" Binding="{Binding User.Name}" />
                         <DataGridTextColumn FontSize="15" Header="Ngày nhập" Width="2*" IsReadOnly="True" Binding="{Binding CreatedAt}" />
 

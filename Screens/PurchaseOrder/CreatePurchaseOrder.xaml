@@ -35,7 +35,7 @@
               TextWrapping="Wrap" AcceptsReturn="True"/>
             </StackPanel>
             <StackPanel Grid.Row="3"  Orientation="Vertical" Margin="0,0,0,12">
-                <TextBlock FontSize="20" Grid.Row="0" Text="Tổng giá nhập"  />
+                <TextBlock FontSize="20" Grid.Row="0" Text="Tổng giá nhập(VNĐ)"  />
                 <TextBox  PreviewTextInput="NumberOnly_PreviewTextInput" Text="{Binding PurchaseOrder.TotalAmount}" FontSize="18" BorderThickness="1" Height="40"/>
             </StackPanel>
             <DataGrid Grid.Row="4" 
@@ -62,7 +62,7 @@
                         </DataGridTemplateColumn.CellEditingTemplate>
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Số lượng" Binding="{Binding Quantity}" Width="*" />
-                    <DataGridTextColumn Header="Giá nhập" Binding="{Binding Cost}" Width="*" />
+                    <DataGridTextColumn Header="Giá nhập(VNĐ)" Binding="{Binding Cost}" Width="*" />
                     <!--<DataGridTextColumn Header="Thành tiền" Binding="{Binding TotalPrice}" IsReadOnly="True" Width="*"/>-->
 
                 </DataGrid.Columns>

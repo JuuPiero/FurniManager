@@ -21,10 +21,10 @@
                 <RowDefinition Height="4*"/>
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="30"  Text="Create New Product" Margin="0,0,0,12"/>
+            <TextBlock Grid.Row="0" FontWeight="Bold" FontSize="30"  Text="Thêm sản phẩm" Margin="0,0,0,12"/>
 
             <StackPanel Grid.Row="1"  Orientation="Vertical" Margin="0,0,0,12">
-                <TextBlock FontSize="20" Grid.Row="0" Text="Name"  />
+                <TextBlock FontSize="20" Grid.Row="0" Text="Tên sản phẩm"  />
                 <TextBox Text="{Binding Product.Name}"  FontSize="18" BorderThickness="1" Height="40"/>
             </StackPanel>
             <StackPanel Grid.Row="2" Orientation="Vertical" Margin="0,0,0,20">
@@ -44,14 +44,14 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <StackPanel Grid.Column="0"  Orientation="Vertical" MinWidth="320" HorizontalAlignment="Left" >
-                    <TextBlock Text="Price"  FontSize="20" Grid.Row="0"  />
+                    <TextBlock Text="Giá bán(VNĐ)"  FontSize="20" Grid.Row="0"  />
                     <TextBox 
                         PreviewTextInput="NumberOnly_PreviewTextInput"
                         Text="{Binding Product.Price}" 
                         FontSize="18" BorderThickness="1" Height="40"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1"  Orientation="Vertical"  HorizontalAlignment="Stretch">
-                    <TextBlock Text="Quantity" FontSize="20" Grid.Row="0" />
+                    <TextBlock Text="Tồn Kho" FontSize="20" Grid.Row="0" />
                     <TextBox Text="{Binding Product.Quantity}"  PreviewTextInput="NumberOnly_PreviewTextInput"
                                FontSize="18" BorderThickness="1" Height="40"/>
                 </StackPanel>
@@ -59,7 +59,7 @@
 
 
             <StackPanel Grid.Row="4"  Orientation="Vertical"  Margin="0,0,0,20">
-                <TextBlock FontSize="20" Grid.Row="0" Text="Description" />
+                <TextBlock FontSize="20" Grid.Row="0" Text="Mô tả" />
                 <TextBox Text="{Binding Product.Description}" 
                          FontSize="18"
                          BorderThickness="1" Height="120" 
@@ -88,7 +88,7 @@
             </StackPanel>
 
             <StackPanel Grid.Row="6"  Orientation="Vertical" Margin="20, 10, 0, 10">
-                <TextBlock Text="Detail Infomation" FontSize="20"  HorizontalAlignment="Left" Width="200" Margin="0, 0, 0, 10"/>
+                <TextBlock Text="Thông tin chi tiết" FontSize="20"  HorizontalAlignment="Left" Width="200" Margin="0, 0, 0, 10"/>
 
                 <ItemsControl ItemsSource="{Binding Attributes}"  Margin="0, 0, 0, 10">
                     <ItemsControl.ItemTemplate>
