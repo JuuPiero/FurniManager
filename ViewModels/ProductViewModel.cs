@@ -107,7 +107,7 @@ namespace FurniManager.ViewModels
                 var items = db.Products
                     .Include(p => p.Category)
                     .Include(p => p.Attributes)
-                    .Include(p => p.Images).ToList();
+                    .Include(p => p.Images).OrderByDescending(c => c.CreatedAt).ToList();
 
                 if (!string.IsNullOrWhiteSpace(Keyword))
                 {

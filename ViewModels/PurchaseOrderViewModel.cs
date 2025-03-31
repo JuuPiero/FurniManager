@@ -109,7 +109,7 @@ public class PurchaseOrderViewModel : INotifyPropertyChanged
         using (var db = new ApplicationDbContext())
         {
             _allPurchaseOrders = db.PurchaseOrders.ToList();
-            var items = db.PurchaseOrders.Include(po => po.User).ToList();
+            var items = db.PurchaseOrders.Include(po => po.User).OrderByDescending(c => c.CreatedAt).ToList();
             
             items = items.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
 

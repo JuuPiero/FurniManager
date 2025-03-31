@@ -105,7 +105,7 @@ namespace FurniManager.ViewModels;
         var db = ApplicationDbContext.Instance;
         _allSaleOrders = db.SaleOrders.ToList();
 
-        var items = db.SaleOrders.Include(po => po.User).ToList();
+        var items = db.SaleOrders.Include(po => po.User).OrderByDescending(c => c.CreatedAt).ToList();
         items = items.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
 
        
