@@ -27,21 +27,18 @@ namespace FurniManager.Windows
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void OnLogin(object sender, RoutedEventArgs e)
         {
             var email = UsernameBox.Text;
             var password = PassBox.Password;
 
-            bool r = ApplicationDbContext.CheckLogin(email, password);
-
-            if (r)
+            if (ApplicationDbContext.CheckLogin(email, password))
             {
                 using var db = new ApplicationDbContext();
                 User user = db.Users.First(user => user.Email == email);
                 GlobalContext.Instance.CurrentUser = user;
                 MainWindow main = new MainWindow();
                 Application.Current.MainWindow = main; // Gán lại cửa sổ chính
-                // Application.Current.context. 
                 main.Show();
                 this.Close();
             }

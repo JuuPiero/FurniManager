@@ -102,7 +102,7 @@ namespace FurniManager.ViewModels;
     private void LoadOrders()
     {
         SaleOrders.Clear();
-        var db = ApplicationDbContext.Instance;
+        using var db = new ApplicationDbContext();
         _allSaleOrders = db.SaleOrders.ToList();
 
         var items = db.SaleOrders.Include(po => po.User).OrderByDescending(c => c.CreatedAt).ToList();
