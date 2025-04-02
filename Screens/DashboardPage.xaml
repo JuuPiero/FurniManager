@@ -44,7 +44,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="../res/sale.png" Height="40" Width="40"  HorizontalAlignment="Left"/>
-                        <TextBlock  Grid.Column="1" FontWeight="Bold" Foreground="White" FontSize="20" Text="{Binding UserCount}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBlock  Grid.Column="1" FontWeight="Bold" Foreground="White" FontSize="20" Text="{Binding SaleOrderCount}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                     <Border BorderBrush="White" BorderThickness="2" />
                 </StackPanel>
@@ -57,7 +57,7 @@
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
                         <Image Grid.Column="0" Source="../res/user.png" Height="40" Width="40"  HorizontalAlignment="Left"/>
-                        <TextBlock  Grid.Column="1" FontWeight="Bold" Foreground="White" FontSize="20" Text="{Binding SaleOrderCount}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
+                        <TextBlock  Grid.Column="1" FontWeight="Bold" Foreground="White" FontSize="20" Text="{Binding UserCount}" HorizontalAlignment="Right" VerticalAlignment="Center"/>
                     </Grid>
                     <Border BorderBrush="White" BorderThickness="2" />
                 </StackPanel>

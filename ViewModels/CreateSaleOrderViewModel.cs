@@ -6,6 +6,7 @@ using FurniManager.Utils;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -40,6 +41,8 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
         set {
             _saleOrder = value;
             OnPropertyChanged(nameof(SaleOrder));
+            SubscribeToOrderDetailsChanges();
+            CalculateAmount();
         }
     }
 
@@ -53,12 +56,42 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
 
         AddOrderItemCommand = new RelayCommand(AddOrderItem);
         SaveOrderCommand = new RelayCommand(SaveSaleOrder);
+        SubscribeToOrderDetailsChanges();
+    }
+
+    private void SubscribeToOrderDetailsChanges()
+    {
+        if (_saleOrder.SaleOrderDetails is ObservableCollection<SaleOrderDetail> orderDetails)
+        {
+            orderDetails.CollectionChanged += (s, e) => CalculateAmount(); // Khi danh sách thay đổi
+        }
     }
 
     private void AddOrderItem()
     {
         _saleOrder.SaleOrderDetails.Add(new SaleOrderDetail());
+        CalculateAmount();
     }
+
+
+    private void CalculateAmount()
+    {
+        using var db = new ApplicationDbContext();
+       
+        SaleOrder.TotalAmount = 0;
+
+        foreach (var item in _saleOrder.SaleOrderDetails)
+        {
+            var product = db.Products.Find(item.ProductId);
+            if(product != null)
+            {
+                SaleOrder.TotalAmount += (product.Price * item.Quantity);
+            }
+        }
+        OnPropertyChanged(nameof(SaleOrder));
+        OnPropertyChanged(nameof(SaleOrder.TotalAmount));
+    }
+
 
     private void SaveSaleOrder()
     {

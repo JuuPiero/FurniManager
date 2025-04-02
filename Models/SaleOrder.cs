@@ -18,7 +18,7 @@ namespace FurniManager.Models
         public string Status { get; set; } = "Pending";
 
         [Precision(18, 4)]
-        public decimal TotalAmount { get; set; } //-- Tổng tiền
+        public decimal TotalAmount { get; set; }
         public string Note { get; set; }
 
 
@@ -27,5 +27,8 @@ namespace FurniManager.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
 
         public ObservableCollection<SaleOrderDetail> SaleOrderDetails { get; set; } = new();
+
+
+
     }
 }

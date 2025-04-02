@@ -24,7 +24,7 @@ public class DashboardViewModel
         using var db = new ApplicationDbContext();
 
         ProductCount = db.Products.Count();
-        SaleOrderCount = db.Products.Count();
+        SaleOrderCount = db.SaleOrders.Count();
         UserCount = db.Users.Count();
 
         // Biểu đồ số lượng sản phẩm theo loại
