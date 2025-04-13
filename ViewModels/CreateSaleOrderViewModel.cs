@@ -34,20 +34,22 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
 
     private SaleOrder _saleOrder = new();
 
-    public SaleOrder SaleOrder
-    {
-        get => _saleOrder;
+    //public SaleOrder SaleOrder
+    //{
+    //    get => _saleOrder;
 
-        set {
-            _saleOrder = value;
-            OnPropertyChanged(nameof(SaleOrder));
-            SubscribeToOrderDetailsChanges();
-            CalculateAmount();
-        }
-    }
+    //    set {
+    //        _saleOrder = value;
+    //        OnPropertyChanged(nameof(SaleOrder));
+    //        SubscribeToOrderDetailsChanges();
+    //        CalculateAmount();
+    //    }
+    //}
+    public ObservableObject<SaleOrder> SaleOrder { get; }
 
     public CreateSaleOrderViewModel()
     {
+        SaleOrder = new ObservableObject<SaleOrder>(_saleOrder);
         _saleOrder.UserId = GlobalContext.Instance.CurrentUser.Id;
         using (var db = new ApplicationDbContext())
         {
@@ -56,7 +58,7 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
 
         AddOrderItemCommand = new RelayCommand(AddOrderItem);
         SaveOrderCommand = new RelayCommand(SaveSaleOrder);
-        SubscribeToOrderDetailsChanges();
+        //SubscribeToOrderDetailsChanges();
     }
 
     private void SubscribeToOrderDetailsChanges()
@@ -78,26 +80,26 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
     {
         using var db = new ApplicationDbContext();
        
-        SaleOrder.TotalAmount = 0;
+        _saleOrder.TotalAmount = 0;
 
         foreach (var item in _saleOrder.SaleOrderDetails)
         {
             var product = db.Products.Find(item.ProductId);
             if(product != null)
             {
-                SaleOrder.TotalAmount += (product.Price * item.Quantity);
+                _saleOrder.TotalAmount += (product.Price * item.Quantity);
             }
         }
         OnPropertyChanged(nameof(SaleOrder));
-        OnPropertyChanged(nameof(SaleOrder.TotalAmount));
+        OnPropertyChanged(nameof(_saleOrder.TotalAmount));
     }
 
 
     private void SaveSaleOrder()
     {
-        if(SaleOrder.CustomerName.IsNullOrEmpty() 
-            || SaleOrder.CustomerPhone.IsNullOrEmpty()
-            || SaleOrder.CustomerAddress.IsNullOrEmpty()
+        if(_saleOrder.CustomerName.IsNullOrEmpty() 
+            || _saleOrder.CustomerPhone.IsNullOrEmpty()
+            || _saleOrder.CustomerAddress.IsNullOrEmpty()
         )
         {
             MessageBox.Show("Điền đầy đủ thông tin");
@@ -114,10 +116,10 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
         using (var db = new ApplicationDbContext())
         {
 
-            if(SaleOrder.Status == "Completed")
+            if(_saleOrder.Status == "Completed")
             {
                 // Add quantity here
-                foreach (var item in SaleOrder.SaleOrderDetails)
+                foreach (var item in _saleOrder.SaleOrderDetails)
                 {
                     var product = db.Products.FirstOrDefault(p => p.Id == item.ProductId);
                     if (product != null)
