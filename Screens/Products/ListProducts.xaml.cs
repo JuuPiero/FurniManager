@@ -1,5 +1,6 @@
 ﻿using FurniManager.Utils;
 using FurniManager.ViewModels;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,7 +28,11 @@ namespace FurniManager.Screens.Products
             InitializeComponent();
             DataContext = new ProductViewModel();
         }
-
+        private void NumberOnly_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if(!e.Text.IsNullOrEmpty())
+                e.Handled = !int.TryParse(e.Text, out _);
+        }
         private void OpenCreateProduct(object sender, RoutedEventArgs e)
         {
             Navigation.Navigate(new CreateProduct());

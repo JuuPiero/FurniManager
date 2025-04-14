@@ -26,12 +26,17 @@
             <!--___________________________Filter_____________________________-->
             <Grid Grid.Row="1" VerticalAlignment="Top">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="50*"/>
-                    <ColumnDefinition Width="50*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Column="0" BorderThickness="1" Height="40" ItemsSource="{Binding Categories}" SelectedItem="{Binding CategoryFilter}" DisplayMemberPath="Name" />
-
-                <Button Grid.Column="1" Width="200" Content="Thêm sản phẩm" HorizontalAlignment="Right" Click="OpenCreateProduct"/>
+                <TextBox  Grid.Column="1" Text="{Binding MinPriceFilter, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberOnly_PreviewTextInput" materialDesign:HintAssist.Hint="Giá thấp nhất" />
+                <TextBox  Grid.Column="2" Text="{Binding MaxPriceFilter, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberOnly_PreviewTextInput" materialDesign:HintAssist.Hint="Giá cao nhất" />
+                <ComboBox Grid.Column="3" BorderThickness="1" Height="40" ItemsSource="{Binding StatusFilters}" SelectedItem="{Binding StatusFilter}" />
+                <Button Grid.Column="4" Width="200" Content="Thêm sản phẩm" HorizontalAlignment="Right" Click="OpenCreateProduct"/>
             </Grid>
             <Grid  Grid.Row="2" >
                 <Grid.RowDefinitions>

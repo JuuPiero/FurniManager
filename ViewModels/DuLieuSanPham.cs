@@ -4,6 +4,7 @@ using FurniManager.Models;
 using FurniManager.Screens.Products;
 using FurniManager.Utils;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,8 +28,45 @@ namespace FurniManager.ViewModels
         public ICommand PreviousPageCommand { get; }
 
 
-        public List<Category> Categories { get; set; }
 
+        private decimal? _minPriceFilter = null;
+        private decimal? _maxPriceFilter = null;
+        public decimal? MinPriceFilter
+        {
+            get => _minPriceFilter;
+            set
+            {
+                _minPriceFilter = value;
+                OnPropertyChanged(nameof(MinPriceFilter));
+                LoadProducts();
+            }
+        }
+        public decimal? MaxPriceFilter
+        {
+            get => _maxPriceFilter;
+            set
+            {
+                _maxPriceFilter = value;
+                OnPropertyChanged(nameof(MaxPriceFilter));
+                LoadProducts();
+            }
+        }
+
+        public List<string> StatusFilters { get; set; } = new List<string>() { "In Stock", "Out Stock" };
+        private string? _statusFilter;
+        public string? StatusFilter
+        {
+            get => _statusFilter;
+            set
+            {
+                _statusFilter = value;
+                OnPropertyChanged(nameof(StatusFilter));
+                LoadProducts();
+            }
+        }
+
+
+        public List<Category> Categories { get; set; }
         public Category _categoryFilter;
         public Category CategoryFilter
         {
@@ -113,12 +151,29 @@ namespace FurniManager.ViewModels
                 {
                     items = items.Where(p => p.Name.Contains(Keyword, StringComparison.OrdinalIgnoreCase)).ToList();
                 }
+                if (MinPriceFilter != null && MaxPriceFilter != null)
+                {
+                    items = items.Where(p => p.Price >= MinPriceFilter && p.Price <= MaxPriceFilter).ToList();
+                }
 
-                if(CategoryFilter != null)
+
+                if (CategoryFilter != null)
                 {
                     items = items.Where(p => p.CategoryId == CategoryFilter.Id).ToList();
                 }
 
+                if (!StatusFilter.IsNullOrEmpty())
+                {
+                    if(StatusFilter == StatusFilters[0])
+                    {
+                        items = items.Where(p => p.Quantity > 0).ToList();
+
+                    }
+                    else
+                    {
+                        items = items.Where(p => p.Quantity == 0).ToList();
+                    }
+                }
 
                 items = items.Skip((CurrentPage - 1) * PageSize).Take(PageSize).ToList();
 
