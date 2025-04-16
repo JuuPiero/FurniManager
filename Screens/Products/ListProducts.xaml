@@ -33,8 +33,8 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Column="0" BorderThickness="1" Height="40" ItemsSource="{Binding Categories}" SelectedItem="{Binding CategoryFilter}" DisplayMemberPath="Name" />
-                <TextBox  Grid.Column="1" Text="{Binding MinPriceFilter, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberOnly_PreviewTextInput" materialDesign:HintAssist.Hint="Giá thấp nhất" />
-                <TextBox  Grid.Column="2" Text="{Binding MaxPriceFilter, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberOnly_PreviewTextInput" materialDesign:HintAssist.Hint="Giá cao nhất" />
+                <TextBox BorderThickness="0, 1, 1, 1" Grid.Column="1" Text="{Binding MinPriceFilter, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberOnly_PreviewTextInput" materialDesign:HintAssist.Hint="Giá thấp nhất" />
+                <TextBox  BorderThickness="0, 1, 0, 1"  Grid.Column="2" Text="{Binding MaxPriceFilter, UpdateSourceTrigger=PropertyChanged}" PreviewTextInput="NumberOnly_PreviewTextInput" materialDesign:HintAssist.Hint="Giá cao nhất" />
                 <ComboBox Grid.Column="3" BorderThickness="1" Height="40" ItemsSource="{Binding StatusFilters}" SelectedItem="{Binding StatusFilter}" />
                 <Button Grid.Column="4" Width="200" Content="Thêm sản phẩm" HorizontalAlignment="Right" Click="OpenCreateProduct"/>
             </Grid>
