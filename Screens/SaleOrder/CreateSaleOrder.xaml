@@ -83,7 +83,7 @@
 
             <StackPanel Grid.Row="7"  Orientation="Vertical" Margin="0,0,0,12">
                 <TextBlock FontSize="20" Grid.Row="0" Text="Tổng tiền(VNĐ):"  />
-                <TextBox  PreviewTextInput="NumberOnly_PreviewTextInput" Text="{Binding SaleOrder.TotalAmount}" FontSize="18" BorderThickness="1" Height="40"/>
+                <TextBox Background="#ccc" FontWeight="Bold"  PreviewTextInput="NumberOnly_PreviewTextInput" IsReadOnly="True" Text="{Binding TotalAmount}" FontSize="18" BorderThickness="1" Height="40"/>
             </StackPanel>
             <StackPanel Grid.Row="8"  Orientation="Vertical" Margin="0,0,0,12">
                 <TextBlock FontSize="20" Grid.Row="0" Text="Trạng thái"  />

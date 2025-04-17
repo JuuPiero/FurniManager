@@ -30,6 +30,14 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
         "Cancel"
     };
 
+    private decimal _totalAmount;
+    public decimal TotalAmount
+    {
+        get => _totalAmount;
+        set { _totalAmount = value; OnPropertyChanged(nameof(TotalAmount)); }
+    }
+
+
 
     private SaleOrder _saleOrder = new();
 
@@ -42,6 +50,9 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(SaleOrder));
         }
     }
+
+
+
 
     public CreateSaleOrderViewModel()
     {
@@ -57,7 +68,41 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
 
     private void AddOrderItem()
     {
-        _saleOrder.SaleOrderDetails.Add(new SaleOrderDetail());
+        var newItem = new SaleOrderDetail { Quantity = 1 };
+
+
+        if (Products.Any())
+        {
+            newItem.ProductId = Products.First().Id;
+            newItem.UnitPrice = Products.First().Price;
+        }
+
+        newItem.PropertyChanged += SaleOrderDetail_PropertyChanged;
+        _saleOrder.SaleOrderDetails.Add(newItem);
+        RecalculateTotal();
+    }
+
+    private void SaleOrderDetail_PropertyChanged(object? sender, PropertyChangedEventArgs e)
+    {
+        if (e.PropertyName == nameof(SaleOrderDetail.Quantity) || e.PropertyName == nameof(SaleOrderDetail.ProductId))
+        {
+            var detail = sender as SaleOrderDetail;
+            if (detail != null)
+            {
+                // Cập nhật lại giá nếu ProductId thay đổi
+                var product = Products.FirstOrDefault(p => p.Id == detail.ProductId);
+                if (product != null)
+                {
+                    detail.UnitPrice = product.Price;
+                }
+            }
+
+            RecalculateTotal();
+        }
+    }
+    private void RecalculateTotal()
+    {
+        TotalAmount = _saleOrder.SaleOrderDetails.Sum(d => d.Quantity * d.UnitPrice);
     }
 
     private void SaveSaleOrder()
@@ -77,6 +122,8 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
         {
             return;
         }
+
+        _saleOrder.TotalAmount = TotalAmount;
 
         using (var db = new ApplicationDbContext())
         {
@@ -102,7 +149,6 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
                 }
             }
 
-            Console.WriteLine(_saleOrder);
             db.SaleOrders.Add(_saleOrder);
             db.SaveChanges();
 
