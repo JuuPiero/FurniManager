@@ -37,6 +37,13 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
         set { _totalAmount = value; OnPropertyChanged(nameof(TotalAmount)); }
     }
 
+    private float? _discountPercent;
+    public float? DiscountPercent
+    {
+        get => _discountPercent;
+        set { _discountPercent = value; RecalculateTotal(); OnPropertyChanged(nameof(DiscountPercent)); OnPropertyChanged(nameof(TotalAmount)); }
+    }
+
 
 
     private SaleOrder _saleOrder = new();
@@ -50,7 +57,6 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
             OnPropertyChanged(nameof(SaleOrder));
         }
     }
-
 
 
 
@@ -103,6 +109,10 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
     private void RecalculateTotal()
     {
         TotalAmount = _saleOrder.SaleOrderDetails.Sum(d => d.Quantity * d.UnitPrice);
+        if(DiscountPercent != null)
+        {
+            TotalAmount -= TotalAmount * ((decimal)DiscountPercent / 100);
+        }
     }
 
     private void SaveSaleOrder()
@@ -124,6 +134,7 @@ public class CreateSaleOrderViewModel : INotifyPropertyChanged
         }
 
         _saleOrder.TotalAmount = TotalAmount;
+        _saleOrder.DiscountPercent = _discountPercent;
 
         using (var db = new ApplicationDbContext())
         {

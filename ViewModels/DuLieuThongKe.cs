@@ -12,6 +12,7 @@ using FurniManager.Utils;
 using System.Windows.Input;
 using FurniManager.Commands;
 using System.Windows;
+using FurniManager.Models;
 
 namespace FurniManager.ViewModels
 {
@@ -22,6 +23,7 @@ namespace FurniManager.ViewModels
 
 
         public ICommand ExportExcelCommand { get; }
+        public ICommand ExportRevanueCommand { get; }
 
 
         public SeriesCollection StockLevelChart { get; set; }
@@ -36,6 +38,7 @@ namespace FurniManager.ViewModels
         {
 
             ExportExcelCommand = new RelayCommand(ExportExcel);
+            ExportRevanueCommand = new RelayCommand(ExportRevanue);
 
             using var db = new ApplicationDbContext();
 
@@ -107,6 +110,22 @@ namespace FurniManager.ViewModels
             report.ExportToExcel(orders, products, excelPath);
 
            MessageBox.Show($"Xuất báo cáo Excel thành công! File nằm ở: {excelPath}");
+        }
+
+
+        private void ExportRevanue()
+        {
+            var exePath = AppDomain.CurrentDomain.BaseDirectory; 
+            var excelPath = Path.Combine(exePath, "DoanhThu.xlsx");
+
+            var db = new ApplicationDbContext();
+            var orders = db.SaleOrders.Include(so => so.SaleOrderDetails).ThenInclude(sod => sod.Product).ToList();
+            var products = db.Products.ToList();
+
+            var report = new ExcelReportGenerator();
+            report.ExportRevanue(orders, products, excelPath);
+
+            MessageBox.Show($"Xuất báo cáo Excel thành công! File nằm ở: {excelPath}");
         }
     }
 
